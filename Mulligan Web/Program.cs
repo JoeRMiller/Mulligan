@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Mulligan.Web.Data;
+//using Mulligan.Web.Data;
+using Mulligan.Core.Data;
 
 namespace Mulligan.Web
 {
@@ -15,8 +16,19 @@ namespace Mulligan.Web
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("MulliganDBConnectionString") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             
+            services.AddDbContext<CoreDbContext>(options =>
+                options.UseNpgsql(
+                    connectionString,
+                    x => x.MigrationsAssembly("Mulligan Core")
+                )
+            );
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(connectionString));
+                options.UseNpgsql(
+                    connectionString,
+                    x => x.MigrationsAssembly("Mulligan Core")
+                )
+            );
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -24,11 +36,11 @@ namespace Mulligan.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-            services.AddAuthentication().AddGoogle(googleOptions =>
-                {
-                    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-                    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-                });
+            //services.AddAuthentication().AddGoogle(googleOptions =>
+            //    {
+            //        googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+            //        googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            //    });
             
             services.AddControllersWithViews();
 
