@@ -11,7 +11,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore.Query;
 
 
-namespace Mulligan.Console
+namespace Mulligan.Command
 {
     public class Importer
     {
@@ -37,7 +37,7 @@ namespace Mulligan.Console
             var builder = new ConfigurationBuilder().AddUserSecrets<Program>();
             var configuration = builder.Build();
             string connectionString = configuration["ConnectionStrings:MulliganDBConnectionString"];
-            System.Console.WriteLine(connectionString);
+            //System.Console.WriteLine(connectionString);
             var optionsBuilder = new DbContextOptionsBuilder<CoreDbContext>();
             optionsBuilder.UseNpgsql(connectionString);
                      
@@ -45,7 +45,7 @@ namespace Mulligan.Console
 
             foreach (var state in _states)
             {
-                context.States.Add(state);
+                //context.States.Add(state);
             }
             context.SaveChanges();
         }
