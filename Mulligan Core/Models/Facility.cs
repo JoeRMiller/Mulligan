@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Mulligan.Core.Models
 {
-    public record test(string name);
     public class Facility
     {
         //private int _id;

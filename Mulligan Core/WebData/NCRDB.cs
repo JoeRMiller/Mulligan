@@ -14,18 +14,19 @@ namespace Mulligan.Core.WebData
 {
     public class NCRDB : IDisposable
     {
-        private Uri _baseAddress;
+        private Uri _baseUrl;
         private HttpClientHandler _handler;
         private HttpClient _client;
         private bool disposedValue;
         private string _courseTeeInfoPath = "courseTeeInfo?CourseID=";
         private string _userAgent = "PostmanRuntime/7.35.0";
+        private string _baseAddress = "https://ncrdb.usga.org/";
 
         public NCRDB() 
         {
-            _baseAddress = new Uri("https://ncrdb.usga.org/");
+            _baseUrl = new Uri(_baseAddress);
             _handler = new HttpClientHandler { UseCookies = true };
-            _client = new HttpClient(_handler) { BaseAddress = _baseAddress };
+            _client = new HttpClient(_handler) { BaseAddress = _baseUrl };
             _client.DefaultRequestHeaders.UserAgent.ParseAdd(_userAgent);
             _client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
         }

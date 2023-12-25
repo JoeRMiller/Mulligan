@@ -11,7 +11,7 @@ namespace Mulligan.Core.Data
         //public DbSet<Address> Addresses { get; set; }
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Course> Courses { get; set; }
-
+        public DbSet<TeeSet> Tees { get; set; }
         
 
         public CoreDbContext(DbContextOptions<CoreDbContext> options)
@@ -27,6 +27,7 @@ namespace Mulligan.Core.Data
             //modelBuilder.HasSequence<int>("AddressSequence").StartsAt(1).IncrementsBy(1);
             //modelBuilder.HasSequence<int>("FacilitySequence").StartsAt(1).IncrementsBy(1);
             //modelBuilder.HasSequence<int>("CourseSequence").StartsAt(1).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("TeeSetSequence").StartsAt(1).IncrementsBy(1);
 
             var facility = modelBuilder.Entity<Facility>();
             facility.HasKey(f => f.NCRDId);
@@ -40,7 +41,7 @@ namespace Mulligan.Core.Data
             facility.Property(f => f.EntCountryCode).IsRequired();
             facility.Property(f => f.EntStateCode).IsRequired();
 
-            var course = modelBuilder.Entity<Course>(); ;
+            var course = modelBuilder.Entity<Course>();
             course.HasKey(c => c.NCRDId);
             //course.Property(c => c.Id).HasDefaultValueSql("nextval('\"CourseSequence\"')");
             course.Property(c => c.Name).IsRequired();
@@ -50,6 +51,21 @@ namespace Mulligan.Core.Data
                   .WithMany(f => f.Courses)
                   .HasForeignKey(c => c.FacilityId);
 
+            var teeSet = modelBuilder.Entity<TeeSet>();
+            teeSet.HasKey(t => t.Id);
+            teeSet.Property(t => t.Id).HasDefaultValueSql("nextval('\"TeeSetSequence\"')");
+            teeSet.Property(t => t.CourseId).IsRequired();
+            teeSet.Property(t => t.Gender).IsRequired();
+            teeSet.HasIndex(t => new { t.CourseId, t.Name, t.Gender }).IsUnique();
+            teeSet.Property(t => t.Par).IsRequired();
+            teeSet.Property(t => t.CourseRating).IsRequired();
+            teeSet.Property(t => t.Slope).IsRequired();
+            teeSet.HasOne(t => t.Course)
+                  .WithMany(c => c.Tees)
+                  .HasForeignKey(t => t.CourseId);
+            
+            
+            
 
 
             //var state = modelBuilder.Entity<State>();

@@ -21,6 +21,7 @@ namespace Mulligan.Core.Models
         private CourseClass _classification;
         private int _facilityId;
         private Facility _facility;
+        private List<TeeSet> _tees;
         
 
         public Course(int NCRDId, string Name, int facilityId, int classType) 
@@ -30,6 +31,7 @@ namespace Mulligan.Core.Models
             _facilityId = facilityId;
             _classType = classType;
             _classification = (CourseClass)_classType;
+            _tees = [];
         }
 
         //public int Id { get => _id; set => _id = value; }
@@ -39,5 +41,6 @@ namespace Mulligan.Core.Models
         public int FacilityId { get => _facilityId; set => _facilityId = value; }
         public Facility Facility { get => _facility; set => _facility = value; }
         public int ClassType { get => _classType; set => _classType = value; }
+        public List<TeeSet> Tees { get => _tees; }
     }
 }
