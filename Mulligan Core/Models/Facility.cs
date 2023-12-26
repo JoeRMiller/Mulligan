@@ -56,6 +56,12 @@ namespace Mulligan.Core.Models
         public string? PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string? Email { get => _email; set => _email = value; }
         public List<Course> Courses { get => _courses; }
-        
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Facility: {NCRDId} - {State} {Name}");
+            return sb.ToString();
+        }
     }
 }

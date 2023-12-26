@@ -31,7 +31,7 @@ namespace Mulligan.Core.WebData
             _client.DefaultRequestHeaders.Accept.ParseAdd("*/*");
         }
 
-        public async Task<List<NCRDBTee>> GetTees(int courseId, int facilityId)
+        public async Task<List<NCRDBTee>> GetTees(int courseId)
         {
             List<NCRDBTee> tees = [];
 
@@ -59,6 +59,12 @@ namespace Mulligan.Core.WebData
             
 
             var table = doc.QuerySelector("#gvTee");
+            if (table == null)
+            {
+                //No tee sets here
+                return tees;
+            }
+                
             var rows = table.QuerySelectorAll("tr");
             int rowIndex = 0;
             int rowCount = rows.Count();

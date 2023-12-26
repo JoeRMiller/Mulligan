@@ -7,6 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>fe8fc153-24b4-46af-a53b-5aff39a57cb7</UserSecretsId>
+    <AssemblyName>mulligan.exe</AssemblyName>
   </PropertyGroup>
 
    

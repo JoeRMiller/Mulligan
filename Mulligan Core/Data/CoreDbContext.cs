@@ -28,6 +28,7 @@ namespace Mulligan.Core.Data
             //modelBuilder.HasSequence<int>("FacilitySequence").StartsAt(1).IncrementsBy(1);
             //modelBuilder.HasSequence<int>("CourseSequence").StartsAt(1).IncrementsBy(1);
             modelBuilder.HasSequence<int>("TeeSetSequence").StartsAt(1).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("HoleSequence").StartsAt(1).IncrementsBy(1);
 
             var facility = modelBuilder.Entity<Facility>();
             facility.HasKey(f => f.NCRDId);
@@ -63,9 +64,21 @@ namespace Mulligan.Core.Data
             teeSet.HasOne(t => t.Course)
                   .WithMany(c => c.Tees)
                   .HasForeignKey(t => t.CourseId);
-            
-            
-            
+
+            var hole = modelBuilder.Entity<Hole>();
+            hole.HasKey(h => h.Id);
+            hole.Property(h => h.Id).HasDefaultValueSql("nextval('\"HoleSequence\"')");
+            hole.HasIndex(h => new { h.Id, h.TeeSetId, h.Number }).IsUnique();
+            hole.Property(h => h.Hdcp).IsRequired();
+            hole.Property(h => h.Number).IsRequired();
+            hole.Property(h => h.Par).IsRequired();
+            hole.Property(h => h.Yardarge).IsRequired();
+            hole.HasOne(h => h.TeeSet)
+                .WithMany(t => t.Holes)
+                .HasForeignKey(h => h.TeeSetId);
+
+
+
 
 
             //var state = modelBuilder.Entity<State>();

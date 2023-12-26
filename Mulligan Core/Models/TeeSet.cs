@@ -21,6 +21,7 @@ namespace Mulligan.Core.Models
         private decimal _backRating;
         private int _backSlope;
         private Course _course;
+        private List<Hole> _holes;
 
         public TeeSet() { }
 
@@ -37,6 +38,19 @@ namespace Mulligan.Core.Models
         public decimal BackRating { get => _backRating; set => _backRating = value; }
         public int BackSlope { get => _backSlope; set => _backSlope = value; }
         public Course Course { get => _course; set => _course = value; }
-        
+        public List<Hole> Holes { get => _holes; set => _holes = value; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            sb.Append("Tee Set\t");
+            sb.Append($"Id:{Id}\n");
+            sb.Append($"Name:{Name}\t");
+            sb.Append($"Gender:{Gender}\t");
+            sb.Append($"Par:{Par}\t");
+            sb.Append($"Rating:{CourseRating}\t");
+            sb.Append($"Slope:{Slope}");
+            return sb.ToString();
+        }
     }
 }

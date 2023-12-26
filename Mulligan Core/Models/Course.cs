@@ -42,5 +42,12 @@ namespace Mulligan.Core.Models
         public Facility Facility { get => _facility; set => _facility = value; }
         public int ClassType { get => _classType; set => _classType = value; }
         public List<TeeSet> Tees { get => _tees; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Course:{NCRDId} - {Name}");
+            return sb.ToString();
+        }
     }
 }
