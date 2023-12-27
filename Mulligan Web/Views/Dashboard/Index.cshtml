@@ -1,0 +1,50 @@
+﻿
+@model IEnumerable<Mulligan.Core.Models.Facility>
+
+<h1>Dashboard</h1>
+
+@using (Html.BeginForm("Search", "Dashboard", FormMethod.Get))
+{
+    <input type="text" name="searchName" />
+    <input type="submit" value="Search" />
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Facility ID</th>
+            <th>Facility Name</th>
+            <!-- Other columns... -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var facility in Model)
+        {
+            <tr>
+                <td>@facility.NCRDId</td>
+                <td>@facility.Name</td>
+            </tr>
+            <tr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in facility.Courses)
+                        {
+                            <tr>
+                                <td>@course.NCRDId</td>
+                                <td>@course.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </tr>
+                <!-- Other columns... -->
+        
+        }
+    </tbody>
+</table>

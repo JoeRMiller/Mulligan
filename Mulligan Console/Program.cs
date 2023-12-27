@@ -30,6 +30,9 @@ namespace Mulligan.Command
             using var dbContext = new CoreDbContext(optionsBuilder.Options);
             var search = new Search();
 
+            var blue = new BlueGolf();
+            await blue.FetchScoreCard("La Costa Resort & Spa - CHAMPIONS");
+
             int courseId = 23865;
             //await search.GetTees(courseId, dbContext);
             

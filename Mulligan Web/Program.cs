@@ -15,6 +15,10 @@ namespace Mulligan.Web
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("MulliganDBConnectionString") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
             
             services.AddDbContext<CoreDbContext>(options =>
                 options.UseNpgsql(
@@ -32,20 +36,10 @@ namespace Mulligan.Web
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-
-            //services.AddAuthentication().AddGoogle(googleOptions =>
-            //    {
-            //        googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-            //        googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-            //    });
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             
             services.AddControllersWithViews();
-
-
-            
 
             var app = builder.Build();
 

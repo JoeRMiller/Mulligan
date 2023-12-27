@@ -1,0 +1,81 @@
+﻿@model Mulligan.Core.Models.TeeSet
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TeeSet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label"></label>
+                <select asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId"></select>
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Par" class="control-label"></label>
+                <input asp-for="Par" class="form-control" />
+                <span asp-validation-for="Par" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseRating" class="control-label"></label>
+                <input asp-for="CourseRating" class="form-control" />
+                <span asp-validation-for="CourseRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BogeyRating" class="control-label"></label>
+                <input asp-for="BogeyRating" class="form-control" />
+                <span asp-validation-for="BogeyRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slope" class="control-label"></label>
+                <input asp-for="Slope" class="form-control" />
+                <span asp-validation-for="Slope" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrontRating" class="control-label"></label>
+                <input asp-for="FrontRating" class="form-control" />
+                <span asp-validation-for="FrontRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrontSlope" class="control-label"></label>
+                <input asp-for="FrontSlope" class="form-control" />
+                <span asp-validation-for="FrontSlope" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BackRating" class="control-label"></label>
+                <input asp-for="BackRating" class="form-control" />
+                <span asp-validation-for="BackRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BackSlope" class="control-label"></label>
+                <input asp-for="BackSlope" class="form-control" />
+                <span asp-validation-for="BackSlope" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
