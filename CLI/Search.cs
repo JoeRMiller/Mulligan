@@ -9,7 +9,7 @@ using Mulligan.Core.WebDTO;
 using Mulligan.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Mulligan.Command
+namespace Mulligan.CLI
 {
     public class Search
     {

@@ -15,7 +15,7 @@ using Mulligan.Core.WebDTO;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
-namespace Mulligan.Command
+namespace Mulligan.CLI
 {
     public class Program
     {

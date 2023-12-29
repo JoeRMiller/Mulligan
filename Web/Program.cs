@@ -16,30 +16,25 @@ namespace Mulligan.Web
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("MulliganDBConnectionString") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-            //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
             
             services.AddDbContext<CoreDbContext>(options =>
                 options.UseNpgsql(
                     connectionString,
-                    x => x.MigrationsAssembly("Mulligan Core")
+                    x => x.MigrationsAssembly("Core")
                 )
             );
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     connectionString,
-                    x => x.MigrationsAssembly("Mulligan Core")
+                    x => x.MigrationsAssembly("Core")
                 )
             );
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            
             services.AddControllersWithViews();
+            
 
             var app = builder.Build();
 

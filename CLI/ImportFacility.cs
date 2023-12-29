@@ -8,7 +8,7 @@ using Mulligan.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Mulligan.Command
+namespace Mulligan.CLI
 {
     public struct FacilityJson
     {

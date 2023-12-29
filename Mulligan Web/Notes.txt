@@ -1,3 +1,0 @@
-﻿Update-Database -Context ApplicationDbContext -StartupProject "Mulligan Web" -Project "Mulligan Core"
-Update-Database -Context CoreDbContext -StartupProject "Mulligan Web" -Project "Mulligan Core"
-Add-Migration <NAME> -Context CoreDbContext -StartupProject "Mulligan Web" -Project "Mulligan Core"

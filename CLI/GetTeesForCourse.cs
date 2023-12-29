@@ -9,7 +9,7 @@ using Mulligan.Core.WebData;
 using Mulligan.Core.WebDTO;
 using Microsoft.EntityFrameworkCore;
 
-namespace Mulligan.Command
+namespace Mulligan.CLI
 {
     public class GetTeesForCourse
     {

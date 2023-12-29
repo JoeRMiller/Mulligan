@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Security.Authentication;
 
-namespace Mulligan.Command
+namespace Mulligan.CLI
 {
     internal class SearchCourse
     {
